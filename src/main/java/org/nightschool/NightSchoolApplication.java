@@ -20,17 +20,12 @@ public class NightSchoolApplication extends Application<NightSchoolConfiguration
     @Override
     public void initialize(Bootstrap<NightSchoolConfiguration> bootstrap) {
         // nothing to do yet
-        bootstrap.addBundle(new AssetsBundle("/webapp", "/webapp"));
+        bootstrap.addBundle(new AssetsBundle("/webapp", "/public"));
     }
 
     @Override
     public void run(NightSchoolConfiguration configuration,
                     Environment environment) {
-        final SayingResources resource = new SayingResources(
-                configuration.getTemplate(), //启动时会序列化
-                configuration.getDefaultName()
-        );
-        environment.jersey().register(resource);//将resource
         environment.jersey().register(new DiskController());
         environment.jersey().register(new CartController());
 

@@ -1,5 +1,8 @@
 apply plugin: 'java'
 apply plugin: 'idea'
+apply plugin: 'application'
+
+mainClassName = "org.nightschool.NightSchoolApplication"
 
 repositories {
     mavenCentral()
@@ -30,6 +33,10 @@ sourceSets {
             srcDir 'src/test/resources'
         }
     }
+}
+
+run {
+    args 'server', 'nightschool.yml'
 }
 
 task dirInit << {
