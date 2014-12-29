@@ -16,7 +16,7 @@ public class DiskControllerTest {
     @Test
     public void test_list_disks_is_empty() throws Exception{
         List<Disk> disks = diskController.list();
-        assertThat(disks.size(), is(0));
+        assertThat(disks.size(), is(3));
     }
 
     @Test
@@ -24,6 +24,6 @@ public class DiskControllerTest {
         Disk disk = new Disk();
         diskController.add(disk);
 
-        assertThat(diskController.list().size(), is(1));
+        assertThat(diskController.list().size(), is(4));
     }
 }

@@ -13,7 +13,8 @@ dependencies {
     testCompile 'junit:junit:4.11'
     compile 'io.dropwizard:dropwizard-core:0.7.1'
     compile 'io.dropwizard:dropwizard-assets:0.7.1'
-
+    compile 'postgresql:postgresql:9.1-901.jdbc4'
+    compile 'org.mybatis:mybatis:3.2.2'
 }
 
 sourceSets {

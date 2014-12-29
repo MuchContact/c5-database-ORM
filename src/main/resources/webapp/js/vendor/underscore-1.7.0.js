@@ -789,7 +789,7 @@
 
     // Returns the first function passed as an argument to the second,
     // allowing you to adjust arguments, run code before and after, and
-    // conditionally execute the original function.
+    // conditionally select the original function.
     _.wrap = function(func, wrapper) {
         return _.partial(wrapper, func);
     };
