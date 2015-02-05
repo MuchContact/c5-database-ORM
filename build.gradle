@@ -1,14 +1,24 @@
+apply plugin: 'liquibase'
 apply plugin: 'java'
 apply plugin: 'idea'
 apply plugin: 'application'
 
 mainClassName = "org.nightschool.NightSchoolApplication"
-
 repositories {
     mavenCentral()
     mavenLocal()
 }
 
+buildscript {
+    repositories {
+        mavenCentral()
+        mavenLocal()
+    }
+    dependencies {
+        classpath 'net.saliman:gradle-liquibase-plugin:1.0.0'
+        classpath 'postgresql:postgresql:9.1-901.jdbc4'
+    }
+}
 dependencies {
     testCompile 'junit:junit:4.11'
     compile 'io.dropwizard:dropwizard-core:0.7.1'
@@ -44,3 +54,21 @@ task dirInit << {
     sourceSets*.java.srcDirs*.each { it.mkdirs() }
     sourceSets*.resources.srcDirs*.each { it.mkdirs() }
 }
+liquibase {
+    activities {
+        main {
+            changeLogFile 'src/main/java/org/nightschool/mapper/changelog.xml'
+            url 'jdbc:postgresql://localhost:5432/shopping_mall'
+            username 'twer'
+            password '123456'
+            changeLogParameters([myToken: 'myvalue',
+                                 second : 'secondValue'])
+        }
+    }
+
+    // runList = project.ext.runList
+    runList = 'main'
+    // runList = 'main, second'
+}
+
+tasks.withType(JavaCompile) { options.encoding = "UTF-8" }

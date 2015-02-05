@@ -21,7 +21,7 @@ public class DiskControllerTest {
 
     @Test
     public void test_list_disks_is_not_empty() throws Exception {
-        Disk disk = new Disk();
+        Disk disk = new Disk(1, "小清新光盘", "../images/disk/fancy-disk.jpg", "小清新、小文艺 35元/10张", 3.5, 3.5, 100, "twer");
         diskController.add(disk);
 
         assertThat(diskController.list().size(), is(4));

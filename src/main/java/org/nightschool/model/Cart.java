@@ -3,6 +3,7 @@ package org.nightschool.model;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
+import java.util.function.Consumer;
 
 public class Cart {
 
@@ -18,24 +19,20 @@ public class Cart {
 
     public int countKinds() {
         HashSet<Disk> diskSet = new HashSet<>();
-
-        for (Disk disk : disks) {
-            diskSet.add(disk);
-        }
-
+        disks.forEach((disk) -> diskSet.add(disk));
         return diskSet.size();
     }
 
     public void removeDisk(Disk disk) {
-        int count = 0;
-        for (Disk d : disks) {
+        final int[] count = {0};
+        disks.forEach((d) -> {
             if (d.equals(disk)) {
-                count++;
+                count[0]++;
             }
-        }
-
-        int i=0;
-        while (i<count){
+        });
+        //TODO remove using lambda?
+        int i = 0;
+        while (i < count[0]) {
             disks.remove(disk);
             i++;
         }

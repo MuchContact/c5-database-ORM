@@ -1,0 +1,156 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+         http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.1.xsd">
+
+    <changeSet id="1" author="LiuHengJian">
+        <createTable tableName="disks">
+            <column name="id" type="integer">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="name" type="varchar(50)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="imgUrl" type="varchar(100)">
+            </column>
+            <column name="description" type="varchar(100)">
+            </column>
+            <column name="primaryPrice" type="Number(10,2)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="discountedPrice" type="Number(10,2)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="stockSize" type="integer">
+                <constraints nullable="false"/>
+            </column>
+            <column name="shopKeeper" type="varchar(50)">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+        <createTable tableName="cart">
+            <column name="id" type="integer">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="diskId" type="integer">
+                <constraints nullable="false"/>
+            </column>
+            <column name="quantity" type="integer">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+        <createTable tableName="order">
+            <column name="id" type="integer">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="username" type="varchar(50)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="createTime" type="datetime">
+            </column>
+            <column name="status" type="boolean" defaultValueBoolean="false">
+                <constraints nullable="false"/>
+            </column>
+            <column name="CurrentRate" type="number(10,2)">
+            </column>
+            <column name="payTime" type="datetime">
+            </column>
+        </createTable>
+        <createTable tableName="orderItems">
+            <column name="id" type="integer">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="orderId" type="integer">
+                <constraints nullable="false"/>
+            </column>
+            <column name="diskId" type="integer">
+                <constraints nullable="false"/>
+            </column>
+            <column name="quantity" type="integer">
+                <constraints nullable="false"/>
+            </column>
+            <column name="CurrentRateForSingle" type="number(10,2)">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+        <createTable tableName="users">
+            <column name="username" type="varchar(50)">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="password" type="varchar(100)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="type" type="smallint" defaultValue="0">
+                <constraints nullable="false"/>
+            </column>
+            <column name="email" type="varchar(100)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="registerTime" type="datetime">
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet author="LiuHengJian" id="2">
+        <addForeignKeyConstraint baseColumnNames="shopKeeper"
+                                 baseTableName="disks"
+                                 constraintName="fk_disks_owner"
+                                 deferrable="true"
+                                 initiallyDeferred="true"
+                                 onDelete="CASCADE"
+                                 onUpdate="RESTRICT"
+                                 referencedColumnNames="username"
+                                 referencedTableName="users"/>
+        <addForeignKeyConstraint baseColumnNames="username"
+                                 baseTableName="order"
+                                 constraintName="fk_order_owner"
+                                 deferrable="true"
+                                 initiallyDeferred="true"
+                                 onDelete="CASCADE"
+                                 onUpdate="CASCADE"
+                                 referencedColumnNames="username"
+                                 referencedTableName="users"/>
+        <addForeignKeyConstraint baseColumnNames="orderId"
+                                 baseTableName="orderItems"
+                                 constraintName="fk_order_items"
+                                 deferrable="true"
+                                 initiallyDeferred="true"
+                                 onDelete="CASCADE"
+                                 onUpdate="CASCADE"
+                                 referencedColumnNames="id"
+                                 referencedTableName="order"/>
+        <addForeignKeyConstraint baseColumnNames="diskId"
+                                 baseTableName="orderItems"
+                                 constraintName="fk_order_disks"
+                                 deferrable="true"
+                                 initiallyDeferred="true"
+                                 onDelete="CASCADE"
+                                 onUpdate="CASCADE"
+                                 referencedColumnNames="id"
+                                 referencedTableName="disks"/>
+    </changeSet>
+    <changeSet id="3" author="LiuHengJian">
+        <addForeignKeyConstraint baseTableName="cart" baseColumnNames="diskId" constraintName="fk_cart_disk"
+                                 referencedTableName="disks"
+                                 referencedColumnNames="id"/>
+    </changeSet>
+    <changeSet id="4" author="LiuHengJian">
+        <insert tableName="users">
+            <column name="username" value="twer"></column>
+            <column name="password" value="123456"></column>
+            <column name="email" value="gis@gmail.com"></column>
+        </insert>
+    </changeSet>
+    <changeSet id="5" author="LiuHengJian">
+        <addColumn tableName="cart">
+            <column name="user" type="varchar(50)"></column>
+        </addColumn>
+        <addForeignKeyConstraint baseTableName="cart" baseColumnNames="user" constraintName="fk_cart_user" referencedTableName="users"
+                                 referencedColumnNames="username"/>
+    </changeSet>
+    <changeSet id="6" author="LiuHenJian">
+        <addAutoIncrement tableName="cart" columnName="id"/>
+    </changeSet>
+</databaseChangeLog>
