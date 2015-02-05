@@ -8,6 +8,7 @@ import java.util.List;
 /**
  * Created by Thoughtworks on 12/26/14.
  */
+@Deprecated
 public class DiskDao {
     ArrayList<Disk> disks = new ArrayList<Disk>();
 

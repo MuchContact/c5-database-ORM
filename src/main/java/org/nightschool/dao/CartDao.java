@@ -8,6 +8,7 @@ import java.util.List;
 /**
  * Created by Thoughtworks on 12/26/14.
  */
+@Deprecated
 public class CartDao {
     private final ArrayList<Disk> cart = new ArrayList<Disk>();
 
