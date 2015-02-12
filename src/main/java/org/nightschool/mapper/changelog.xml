@@ -141,6 +141,7 @@
             <column name="username" value="twer"></column>
             <column name="password" value="123456"></column>
             <column name="email" value="gis@gmail.com"></column>
+            <column name="type" value="1"/>
         </insert>
     </changeSet>
     <changeSet id="5" author="LiuHengJian">
@@ -152,5 +153,17 @@
     </changeSet>
     <changeSet id="6" author="LiuHenJian">
         <addAutoIncrement tableName="cart" columnName="id"/>
+    </changeSet>
+    <changeSet id="7" author="LiuHenJian">
+        <addColumn tableName="disks">
+            <column name="soldOutCount" type="int" value="0"></column>
+        </addColumn>
+        <addColumn tableName="disks">
+            <column name="publishTime" type="datetime"></column>
+        </addColumn>
+        <addUniqueConstraint tableName="users" columnNames="username"/>
+        <dropNotNullConstraint tableName="users" columnName="email"/>
+    </changeSet>
+    <changeSet id="8" author="LiuHengJian">
     </changeSet>
 </databaseChangeLog>

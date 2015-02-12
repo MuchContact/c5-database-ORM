@@ -1,8 +1,6 @@
 package org.nightschool.mapper;
 
-import org.hamcrest.MatcherAssert;
 import org.junit.Test;
-import org.nightschool.model.Cart;
 
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.core.Is.is;

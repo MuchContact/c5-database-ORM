@@ -17,9 +17,6 @@ public interface CartMapper {
     @Select("select * from disks where id=#{diskId}")
     Disk getDisk(int diskId);
 
-    @Select("select * from cart where id=#{primaryIdentity}")
-    public CartItem queryOne(int primaryIdentity);
-
     @Insert("insert into cart(\"diskId\", quantity, \"user\") values(#{diskIdentity}, #{quantity}, #{username})")
     public int add(@Param("diskIdentity") int diskIdentity, @Param("quantity") int quantity, @Param("username") String username);
 

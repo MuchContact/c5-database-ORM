@@ -17,26 +17,30 @@ import static org.nightschool.wrapper.MybatisWrapper.getMapper;
 @Path("/disks")
 @Produces(MediaType.APPLICATION_JSON)
 public class DiskController {
-    //    private final ArrayList<Disk> disks = new ArrayList<>();
-    private final DiskDao diskDao = new DiskDao();
+
+    private final DiskMapper mapper;
+
+    public DiskController() {
+        mapper = getMapper(DiskMapper.class);
+    }
 
     @GET
+    @Path("list")
     public List<Disk> list() {
-        return diskDao.listDisks();
+        return mapper.getDisks();
     }
 
     @POST
     @Path("add")
     @Consumes(MediaType.APPLICATION_JSON)
     public void add(Disk disk) {
-//        diskDao.add(disk);
-        DiskMapper mapper = getMapper(DiskMapper.class);
         mapper.insert(disk);
     }
 
     @DELETE
     @Path("remove/{id}")
     public void remove(@PathParam("id") int index) {
-        diskDao.remove(index);
+        mapper.delete(index);
     }
+
 }

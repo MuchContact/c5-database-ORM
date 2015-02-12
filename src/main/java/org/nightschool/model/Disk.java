@@ -1,25 +1,30 @@
 package org.nightschool.model;
 
 public class Disk {
-    private final int id;
-    private final String shopKeeper;
-    private int stockSize;
-    private double discountedPrice;
-    private double primaryPrice;
-    private String description;
+    private int id;
     private String name;
     private String imgUrl;
-    private String desc;
+    private String description;
+    private double primaryPrice;
+    private double discountedPrice;
+    private int stockSize;
+    private String shopKeeper;
+    private int soldOutCount;
+
+    public Disk(int id, String name, String imgUrl, String description, double primaryPrice, double discountedPrice, int stockSize, String shopKeeper, int soldOutCount) {
+        this.id = id;
+        this.name = name;
+        this.imgUrl = imgUrl;
+        this.description = description;
+        this.primaryPrice = primaryPrice;
+        this.discountedPrice = discountedPrice;
+        this.stockSize = stockSize;
+        this.shopKeeper = shopKeeper;
+        this.soldOutCount = soldOutCount;
+    }
 
     public Disk(int id, String name, String imgUrl, String description, double primaryPrice, double discountedPrice, int stockSize, String username) {
-        this.id=id;
-        this.name=name;
-        this.imgUrl=imgUrl;
-        this.description=description;
-        this.primaryPrice=primaryPrice;
-        this.discountedPrice =discountedPrice;
-        this.stockSize=stockSize;
-        this.shopKeeper=username;
+        this(id,name, imgUrl, description, primaryPrice, discountedPrice, stockSize, username, 0);
     }
 
     public int getId() {
@@ -57,6 +62,13 @@ public class Disk {
     public String getDescription() {
         return description;
     }
+    public int getSoldOutCount() {
+        return soldOutCount;
+    }
+
+    public void setSoldOutCount(int soldOutCount) {
+        this.soldOutCount = soldOutCount;
+    }
 
     public void setDescription(String description) {
         this.description = description;
@@ -77,13 +89,4 @@ public class Disk {
     public void setImgUrl(String imgUrl) {
         this.imgUrl = imgUrl;
     }
-
-    public String getDesc() {
-        return desc;
-    }
-
-    public void setDesc(String desc) {
-        this.desc = desc;
-    }
-
 }
