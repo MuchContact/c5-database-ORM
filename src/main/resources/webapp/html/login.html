@@ -12,13 +12,13 @@
 <body ng-controller="UserCtrl">
 <div class="container">
     <section id="content">
-        <form action="">
+        <form ng-submit="login()" ng-controller="UserCtrl">
             <h1>Login Form</h1>
             <div>
-                <input type="text" placeholder="Username" required="" id="username" />
+                <input type="text" placeholder="Username" required="" id="username" ng-model="user.username"/>
             </div>
             <div>
-                <input type="password" placeholder="Password" required="" id="password" />
+                <input type="password" placeholder="Password" required="" id="password" ng-model="user.password"/>
             </div>
             <div>
                 <input type="submit" value="Log in" />

@@ -22,6 +22,7 @@ angular.module('DiskApp',[]).controller("DisksListCtrl", function($scope, $http,
       method: 'GET',
       url: '/cart'
           }).success(function(data) {
+            alert(data);
             $scope.cart = data;
           }).error(function(error) {
     });
@@ -112,4 +113,23 @@ angular.module('DiskApp',[]).controller("DisksListCtrl", function($scope, $http,
         }).error(function(error) {
     });
   };
+});
+angular.module('DiskApp',[]).controller("UserCtrl", function($scope, $http, filterFilter) {
+   $scope.login=function(user){
+      var testUser={
+        username:"twer",
+        password:"123456"
+      };
+
+      $http({
+         method: 'POST',
+         url: '/user/login',
+         data: testUser,
+         contentType: "application/json"
+       }).success(function(){
+         alert('success');
+       }).error(function(data){
+        alert('认证失败！');
+       });
+   }
 });
