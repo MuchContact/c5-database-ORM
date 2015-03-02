@@ -2,6 +2,7 @@ apply plugin: 'liquibase'
 apply plugin: 'java'
 apply plugin: 'idea'
 apply plugin: 'application'
+apply plugin: 'jetty'
 
 mainClassName = "org.nightschool.NightSchoolApplication"
 repositories {
@@ -71,4 +72,8 @@ liquibase {
     // runList = 'main, second'
 }
 
+jettyRun {
+    reload = "automatic"
+    scanIntervalSeconds = 2
+}
 tasks.withType(JavaCompile) { options.encoding = "UTF-8" }

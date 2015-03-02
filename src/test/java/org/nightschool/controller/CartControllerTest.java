@@ -1,18 +1,14 @@
 package org.nightschool.controller;
 
-import org.apache.ibatis.session.SqlSession;
 import org.junit.*;
 import org.nightschool.mapper.CartMapper;
 import org.nightschool.mapper.DiskMapper;
 import org.nightschool.mapper.GlobalMapper;
-import org.nightschool.model.CartItem;
 import org.nightschool.model.Disk;
-import org.nightschool.mybatis.DBUtil;
-
-import java.io.IOException;
 
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.core.Is.is;
+import static org.junit.Assert.assertEquals;
 import static org.nightschool.wrapper.MybatisWrapper.getMapper;
 
 /**
@@ -42,9 +38,9 @@ public class CartControllerTest {
     }
 
     private void loadCartData2Database() {
-        cartController.add(1, username);
-        cartController.add(2, username);
-        cartController.add(3, username);
+        cartController.addToCart(1, username);
+        cartController.addToCart(2, username);
+        cartController.addToCart(3, username);
     }
 
     private static void clearTable(String table) {
@@ -67,24 +63,41 @@ public class CartControllerTest {
 
     @Test
     public void queryItemsInCart() {
-        assertThat(cartController.listAll(username, token).size(), is(3));
+        assertThat(cartController.queryAll(username, token).size(), is(3));
     }
 
     @Test
     public void changeItemInCart() {
-        CartController cartController = new CartController();
-
         CartMapper mapper = getMapper(CartMapper.class);
         int id = mapper.queryAll(username).get(0).getId();
 
-        assertThat(cartController.modify(id, 20, username, token), is(1));
+        assertThat(cartController.modifyQuantity(id, 20, username, token), is(1));
     }
+
+    @Test
+    public void testAddToCart() throws Exception {
+        DiskMapper mapper = getMapper(DiskMapper.class);
+        int id = mapper.getDisks().get(0).getId();
+
+        assertEquals(cartController.addToCart(id, username), 1);
+    }
+
+    @Test
+    public void testDeleteItemFromCart() throws Exception {
+        CartMapper mapper = getMapper(CartMapper.class);
+        int cartId = mapper.queryAll(username).get(0).getId();
+
+        assertEquals(1, cartController.deleteFromCart(cartId, username, token));
+
+    }
+
     @After
-    public void after(){
+    public void after() {
         clearTable("CART");
     }
+
     @AfterClass
-    public static void afterClass(){
+    public static void afterClass() {
         clearTable("disks");
     }
 }

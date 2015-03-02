@@ -164,6 +164,13 @@
         <addUniqueConstraint tableName="users" columnNames="username"/>
         <dropNotNullConstraint tableName="users" columnName="email"/>
     </changeSet>
-    <changeSet id="8" author="LiuHengJian">
+    <changeSet id="9" author="LiuHengJian">
+        <dropForeignKeyConstraint baseTableName="cart" constraintName="fk_cart_disk"/>
+        <addForeignKeyConstraint baseTableName="cart" baseColumnNames="diskId" constraintName="fk_cart_disk"
+                                 referencedTableName="disks"
+                                 referencedColumnNames="id"
+                                 onDelete="CASCADE"
+                                 onUpdate="CASCADE"/>
     </changeSet>
+
 </databaseChangeLog>

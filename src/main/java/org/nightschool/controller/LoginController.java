@@ -3,9 +3,8 @@ package org.nightschool.controller;
 import org.nightschool.mapper.LoginMapper;
 import org.nightschool.model.User;
 
-import javax.ws.rs.POST;
-import javax.ws.rs.Path;
-import javax.ws.rs.WebApplicationException;
+import javax.ws.rs.*;
+import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
 import static org.nightschool.wrapper.MybatisWrapper.getMapper;
@@ -21,11 +20,15 @@ public class LoginController {
     @POST
     @Path("/register")
     public int register(User user) {
-        return mapper.register(user);
+        int result = mapper.register(user);
+        if(result<=0)
+            throw new WebApplicationException(Response.Status.CONFLICT);
+        return result;
     }
 
     @POST
     @Path("/login")
+    @Consumes(MediaType.APPLICATION_JSON)
     public User login(User user) {
         if(mapper.login(user) == null )
             throw new WebApplicationException(Response.Status.UNAUTHORIZED);

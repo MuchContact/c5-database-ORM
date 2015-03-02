@@ -11,6 +11,9 @@ public class Disk {
     private String shopKeeper;
     private int soldOutCount;
 
+    public Disk() {
+    }
+
     public Disk(int id, String name, String imgUrl, String description, double primaryPrice, double discountedPrice, int stockSize, String shopKeeper, int soldOutCount) {
         this.id = id;
         this.name = name;

@@ -1,7 +1,11 @@
 package org.nightschool.dao;
 
+import org.apache.ibatis.session.SqlSession;
+import org.nightschool.model.CartItem;
 import org.nightschool.model.Disk;
+import org.nightschool.mybatis.DBUtil;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -10,9 +14,8 @@ import java.util.List;
  */
 @Deprecated
 public class CartDao {
-    private final ArrayList<Disk> cart = new ArrayList<Disk>();
 
-//    public void add(Disk disk) {
+//    public void addToCart(Disk disk) {
 //        int i = 0;
 //        for(i = 0; i < cart.size(); i++)
 //        {
@@ -22,14 +25,24 @@ public class CartDao {
 //        }
 //
 //        if(i == cart.size()) {
-//            cart.add(disk);
+//            cart.addToCart(disk);
 //        }
 //        else {
 //            cart.get(i).setNumber(cart.get(i).getNumber() + disk.getNumber());
 //        }
 //    }
 
-    public List<Disk> cartList() {
-        return cart;
+    public List<CartItem> cartList() {
+        SqlSession sqlSession = null;
+        try {
+            sqlSession = DBUtil.getSqlSession();
+            List<CartItem> cartItemList = sqlSession.selectList("Cart.queryAll");
+            return cartItemList;
+        } catch (IOException e) {
+            e.printStackTrace();
+            return null;
+        } finally {
+            sqlSession.close();
+        }
     }
 }

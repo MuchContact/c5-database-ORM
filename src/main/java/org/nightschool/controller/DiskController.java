@@ -31,7 +31,7 @@ public class DiskController {
     }
 
     @POST
-    @Path("add")
+    @Path("addToCart")
     @Consumes(MediaType.APPLICATION_JSON)
     public void add(Disk disk) {
         mapper.insert(disk);

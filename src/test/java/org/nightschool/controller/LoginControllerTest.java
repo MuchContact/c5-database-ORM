@@ -11,6 +11,7 @@ import javax.ws.rs.WebApplicationException;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.core.Is.is;
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotNull;
 import static org.nightschool.wrapper.MybatisWrapper.getMapper;
 
 /**
@@ -49,11 +50,9 @@ public class LoginControllerTest {
     }
 
     @Test
-    public void should_login_success() {
+    public void shouldLoggable() throws Exception {
         loginController.register(user);
-        User loginResponse = loginController.login(user);
-        assertEquals(loginResponse.getUsername(), "hello");
-        assertEquals(loginResponse.getType(), 0);
+        assertNotNull(loginController.login(user));
     }
 
     @After

@@ -6,6 +6,7 @@ import io.dropwizard.setup.Bootstrap;
 import io.dropwizard.setup.Environment;
 import org.nightschool.controller.CartController;
 import org.nightschool.controller.DiskController;
+import org.nightschool.controller.LoginController;
 
 public class NightSchoolApplication extends Application<NightSchoolConfiguration> {
     public static void main(String[] args) throws Exception {
@@ -28,7 +29,7 @@ public class NightSchoolApplication extends Application<NightSchoolConfiguration
                     Environment environment) {
         environment.jersey().register(new DiskController());
         environment.jersey().register(new CartController());
-
+        environment.jersey().register(new LoginController());
     }
 
 }

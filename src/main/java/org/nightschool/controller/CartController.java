@@ -17,26 +17,22 @@ import static org.nightschool.wrapper.MybatisWrapper.getMapper;
  */
 @Path("/cart")
 public class CartController {
-    CartDao cartDao = new CartDao();
-
-    @GET
-    public List<Disk> list() {
-        return cartDao.cartList();
-    }
 
     @POST
-    @Path("add")
+    @Path("addToCart")
     @Consumes(MediaType.APPLICATION_JSON)
-    public int add(int diskId, String username) {
-//        cartDao.add(disk);
+    public int addToCart(int diskId, String username) {
         //TODO get user information, such as username
         CartMapper mapper = getMapper(CartMapper.class);
-        return mapper.add(diskId, 1, username);
+        int result = mapper.add(diskId, 1, username);
+        if (result<1)
+            throw new WebApplicationException(Response.Status.CONFLICT);
+        return result;
     }
 
     @GET
     @Path("query")
-    public List<CartItem> listAll(String username, String token) {
+    public List<CartItem> queryAll(String username, String token) {
         try {
             permissionValidate();
         } catch (IllegalAccessError illegalAccessError) {
@@ -51,14 +47,17 @@ public class CartController {
     }
 
     @POST
-    @Path("modify")
+    @Path("modifyQuantity")
     @Consumes(MediaType.APPLICATION_JSON)
-    public int modify(int primaryIdentity, int quantity, String username, String token) {
+    public int modifyQuantity(int primaryIdentity, int quantity, String username, String token) {
         CartMapper mapper = getMapper(CartMapper.class);
         return mapper.modify(primaryIdentity, quantity);
     }
 
-    public CartItem listById(int primaryIdentity) {
-        return null;
+    @DELETE
+    @Path("delete")
+    public int deleteFromCart(int diskId, String username, String token) {
+        CartMapper mapper = getMapper(CartMapper.class);
+        return mapper.delete(diskId);
     }
 }

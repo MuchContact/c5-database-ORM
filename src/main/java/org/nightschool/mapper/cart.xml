@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="Cart">
+    <resultMap id="resultCart" type="CartItem">
+        <id property="id" column="id"/>
+        <result property="quantity" column="quantity"/>
+        <association property="disk" column="diskId" javaType="Disk" select="selectDisk"/>
+    </resultMap>
+    <select id="queryAll" resultMap="resultCart">
+        select id, "diskId", quantity from cart
+    </select>
+    <select id="selectDisk" parameterType="int" resultType="Disk">
+        select * from disks where id=#{diskId}
+    </select>
+</mapper>
