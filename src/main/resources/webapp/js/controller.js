@@ -114,7 +114,7 @@ angular.module('DiskApp',[]).controller("DisksListCtrl", function($scope, $http,
     });
   };
 });
-angular.module('DiskApp',['ngCookies']).controller("UserCtrl", function($cookieStore, $scope, $http, filterFilter) {
+angular.module('LoginModule',['ngCookies']).controller("UserCtrl", function($cookieStore, $scope, $http, filterFilter) {
    $scope.login=function(user){
       $http({
          method: 'POST',
