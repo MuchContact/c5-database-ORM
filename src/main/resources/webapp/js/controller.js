@@ -114,7 +114,7 @@ angular.module('DiskApp',[]).controller("DisksListCtrl", function($scope, $http,
     });
   };
 });
-angular.module('DiskApp',[]).controller("UserCtrl", function($scope, $http, filterFilter) {
+angular.module('DiskApp',['ngCookies']).controller("UserCtrl", function($cookieStore, $scope, $http, filterFilter) {
    $scope.login=function(user){
       $http({
          method: 'POST',
@@ -122,7 +122,8 @@ angular.module('DiskApp',[]).controller("UserCtrl", function($scope, $http, filt
          data: $scope.user,
          contentType: "application/json"
        }).success(function(){
-         alert('success');
+         $cookieStore.put('currentUser',$scope.user.username);
+         alert($cookieStore.get('currentUser'));
        }).error(function(data){
         alert('认证失败！');
        });
