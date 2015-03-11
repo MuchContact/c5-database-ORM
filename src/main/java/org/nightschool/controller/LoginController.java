@@ -30,6 +30,7 @@ public class LoginController {
     @Path("/login")
     @Consumes(MediaType.APPLICATION_JSON)
     public User login(User user) {
+        //TODO should tips db connection status errer if db is closed.
         if(mapper.login(user) == null )
             throw new WebApplicationException(Response.Status.UNAUTHORIZED);
         return mapper.login(user);

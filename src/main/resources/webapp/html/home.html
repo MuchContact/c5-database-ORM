@@ -5,6 +5,7 @@
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
     <link rel="stylesheet" href="../css/main.css">
     <script src="../js/vendor/angular.min.js"></script>
+    <script src="../js/vendor/angular-cookies.min.js"></script>
     <script src="../js/controller.js"></script>
     <script src="../js/vendor/jquery-2.1.1.js"></script>
     <script src="../js/vendor/underscore-1.7.0.js"></script>
@@ -14,12 +15,16 @@
 <div class="container">
     <nav>
         <div class="align-left">
-            <a href="login.html" target="_blank">登陆</a>
-            <a href="register.html" target="_blank">注册</a>
+            <a href="http://localhost:8080/public/html/home.html"><img src="../images/taobao.png" class="logo"></a>
         </div>
-        <div class="align-right">
+        <!--<div ng-view class="align-right"></div>-->
+        <div class="align-right" ng-show="isNotLogged">
+            <a href="login.html" target="_self">登陆</a>
+            <a href="register.html" target="_self">注册</a>
+        </div>
+        <div class="align-right" ng-show="isLogged">
             <a href="">我的订单</a>
-            <a href="javascript:void(0)" ng-click="goToCart()" ng-show="isList">购物车</a>
+            <a href="javascript:void(0)" ng-click="goToCart()" ng-show="isList">购物车<span ng-show="cartNotEmpty">{{cartSize}}</span></a>
             <a href="javascript:void(0)" ng-click="goToList()" ng-show="isCart">返回</a>
         </div>
     </nav>

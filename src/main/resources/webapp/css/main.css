@@ -2,11 +2,14 @@
 }
 nav {
   width: 100%;
-  height: 25px;
+  height: 45px;
   line-height: 25px;
   background-color: #eeeeee;
   font-family: STHeiti;
   font-size: 13pt;
+}
+nav .logo{
+    height: 40px;
 }
 
 nav .align-left {

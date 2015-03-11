@@ -6,14 +6,14 @@
     <link rel="stylesheet" type="text/css" href="../css/login.css" />
     <script src="../js/vendor/angular.min.js"></script>
     <script src="../js/vendor/angular-cookies.min.js"></script>
-    <script src="../js/controller.js"></script>
+    <script src="../js/loginModule.js"></script>
     <script src="../js/vendor/jquery-2.1.1.js"></script>
     <script src="../js/vendor/underscore-1.7.0.js"></script>
 </head>
-<body ng-controller="UserCtrl">
+<body ng-controller="UserCtrl" ng-init="initialize()">
 <div class="container">
     <section id="content">
-        <form ng-submit="login()" ng-controller="UserCtrl">
+        <form ng-submit="login()">
             <h1>Login Form</h1>
             <div>
                 <input type="text" placeholder="Username" required="" id="username" ng-model="user.username"/>

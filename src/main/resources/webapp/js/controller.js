@@ -1,15 +1,22 @@
-angular.module('DiskApp',[]).controller("DisksListCtrl", function($scope, $http, filterFilter) {
+var diskApp = angular.module('DiskApp',['ngCookies']);
+diskApp.controller("DisksListCtrl", function($cookieStore, $scope, $http, filterFilter) {
   $scope.disks = [];
   $scope.cart = [];
 
   $scope.isList = true;
   $scope.isCart = false;
+  $scope.isLogged = false;
+  $scope.isNotLogged = !$scope.isLogged;
   $scope.number = 10;
   $scope.totalPrice = 0.0;
   $scope.disk = {price:10.0, number:0}
 
+  $scope.cartSize = 0;
+  $scope.cartNotEmpty = false;
 
   $scope.init = function(){
+    checkLoginStatus();
+    getCartSize();
     getDisks();
   }
 
@@ -102,6 +109,23 @@ angular.module('DiskApp',[]).controller("DisksListCtrl", function($scope, $http,
   function getIndexOfDisk(disk) {
     return $scope.disks.indexOf(disk);
   };
+  function checkLoginStatus(){
+    if($cookieStore.get('logged')){
+         $scope.isLogged = true;
+         $scope.isNotLogged = !$scope.isLogged;
+    }
+  }
+  function getCartSize(){
+    $http({
+          method: 'GET',
+          url: '/cart/query',
+          data: {username: 'twer'}
+        }).success(function(data) {
+          console.log("cartDetail:"+data);
+          //$scope.disks = data;
+        }).error(function(error) {
+    });
+  }
 
   function getDisks() {
     $http({
@@ -113,19 +137,5 @@ angular.module('DiskApp',[]).controller("DisksListCtrl", function($scope, $http,
         }).error(function(error) {
     });
   };
-});
-angular.module('LoginModule',['ngCookies']).controller("UserCtrl", function($cookieStore, $scope, $http, filterFilter) {
-   $scope.login=function(user){
-      $http({
-         method: 'POST',
-         url: '/user/login',
-         data: $scope.user,
-         contentType: "application/json"
-       }).success(function(){
-         $cookieStore.put('currentUser',$scope.user.username);
-         alert($cookieStore.get('currentUser'));
-       }).error(function(data){
-        alert('认证失败！');
-       });
-   }
+
 });
