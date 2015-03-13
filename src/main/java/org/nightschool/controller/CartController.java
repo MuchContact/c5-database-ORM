@@ -32,6 +32,8 @@ public class CartController {
 
     @GET
     @Path("query")
+    @Consumes(MediaType.APPLICATION_JSON)
+    @Produces("application/json; charset=UTF-8")
     public List<CartItem> queryAll(String username, String token) {
         try {
             permissionValidate();
@@ -39,7 +41,8 @@ public class CartController {
             throw new WebApplicationException(Response.Status.UNAUTHORIZED);
         }
         CartMapper mapper = getMapper(CartMapper.class);
-        return mapper.queryAll(username);
+        List<CartItem> cartItemList = mapper.queryAll("twer");
+        return cartItemList;
     }
 
     private void permissionValidate() throws IllegalAccessError {
