@@ -119,7 +119,7 @@ diskApp.controller("DisksListCtrl", function($cookieStore, $scope, $http, filter
     $http({
           method: 'GET',
           url: '/cart/query',
-          data: {username: 'twer'}
+          params: {username: 'twer'}
         }).success(function(data) {
           console.log("cartDetail:"+data);
           //$scope.disks = data;
