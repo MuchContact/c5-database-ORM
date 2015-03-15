@@ -221,4 +221,12 @@
             <column name="user" value="twer"></column>
         </insert>
     </changeSet>
+    <changeSet id="13" author="LiuHengJian">
+        <insert tableName="users">
+            <column name="username" value="梦回唐朝"></column>
+            <column name="password" value="123456"></column>
+            <column name="email" value="gis@gmail.com"></column>
+            <column name="type" value="0"/>
+        </insert>
+    </changeSet>
 </databaseChangeLog>
