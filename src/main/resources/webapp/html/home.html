@@ -23,31 +23,14 @@
             <a href="register.html" target="_self">注册</a>
         </div>
         <div class="align-right" ng-show="isLogged">
-            <a href="">我的订单</a>
-            <a href="javascript:void(0)" ng-click="goToCart()" ng-show="isList">购物车<span ng-show="cartNotEmpty">{{cartSize}}</span></a>
+            <a href="orders.html" target="_blank" class="noneDecorator"><span>{{username}}</span>，您好！</a>
+            <a href="javascript:void(0)" ng-click="goToCart()" ng-show="!isAdmin" class="noneDecorator">
+                购物车<span ng-show="cartNotEmpty" class="boldRedText">{{cartSize}}</span>
+            </a>
             <a href="javascript:void(0)" ng-click="goToList()" ng-show="isCart">返回</a>
+            <a href="" ng-show="isAdmin" ng-click="" class="noneDecorator">商品管理</a>
         </div>
     </nav>
-    <section>
-        <div class="left">
-            <ul>
-                <li>光盘</li>
-                <li>U盘</li>
-                <li>硬盘</li>
-            </ul>
-        </div>
-        <div class="right">
-            <img src="../images/disk/fancy-disk.jpg" alt="">
-
-            <div class="description">
-                <p>小清新光盘</p>
-
-                <p>2GB文艺小清新光盘10张</p>
-
-                <p>￥35元</p>
-            </div>
-        </div>
-    </section>
     <div ng-show="isCart">
         <table>
             <tr>
@@ -99,11 +82,7 @@
         </p>
     </div>
     <section id="showMessage" ng-show="isList">
-        <header>
-            <p>光盘</p>
-            <hr>
-        </header>
-        <div>
+        <div ng-show="isAdmin">
             <input placeholder="商品名" id="name" ng-model="disk.name"/>
             <input placeholder="图片链接" id="imgUrl" ng-model="disk.imgUrl"/>
             <input placeholder="商品详情" id="desc" ng-model="disk.desc"/>
@@ -123,13 +102,13 @@
                 </p>
 
                 <div>
-                    <label>单价: {{disk.price}} 元</label>
+                    <label>单价: {{disk.discountedPrice}} 元</label>
                     数量: <input type="text" placeholder=10 ng-model="number">
                 </div>
 
                 <div>
-                    <button ng-click="removeDisk(disk)">remove</button>
-                    <button ng-click="addToCart(disk)">add to cart</button>
+                    <button ng-click="removeDisk(disk)">删除</button>
+                    <button ng-click="addToCart(disk)">加入购物车</button>
                 </div>
             </div>
         </div>

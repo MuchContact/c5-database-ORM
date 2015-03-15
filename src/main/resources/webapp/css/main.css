@@ -80,9 +80,11 @@ section .content {
 }
 
 section .content .item{
-  width: 33%;
+  width: 23%;
   display: inline-block;
   float: left;
+  margin-right: 3%;
+  border: 1px solid #CDC9C9;
 }
 
 section .item p{
@@ -91,7 +93,7 @@ section .item p{
 
 section .item img {
   width: 100%;
-  height: 410;
+  height: 70%;
 }
 
 table {
@@ -155,4 +157,11 @@ footer .right .mapInfo{
   float: left;
   margin-left: 6px;
   padding-left: 100px;
+}
+.noneDecorator {
+    text-decoration: none;
+}
+.boldRedText {
+    color: red;
+    font-weight: bolder;
 }

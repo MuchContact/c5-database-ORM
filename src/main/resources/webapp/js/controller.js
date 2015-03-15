@@ -13,6 +13,8 @@ diskApp.controller("DisksListCtrl", function($cookieStore, $scope, $http, filter
 
   $scope.cartSize = 0;
   $scope.cartNotEmpty = false;
+  $scope.isAdmin = false;
+  $scope.username = "";
 
   $scope.init = function(){
     checkLoginStatus();
@@ -113,26 +115,38 @@ diskApp.controller("DisksListCtrl", function($cookieStore, $scope, $http, filter
     if($cookieStore.get('logged')){
          $scope.isLogged = true;
          $scope.isNotLogged = !$scope.isLogged;
+         if($cookieStore.get('userType') > 0){
+             $scope.isAdmin = true;
+         }else{
+             $scope.isAdmin = false;
+         }
+         $scope.username = $cookieStore.get('currentUser');
     }
+
+
   }
   function getCartSize(){
     $http({
           method: 'GET',
           url: '/cart/query',
-          params: {username: 'twer'}
+          params: {username: $scope.username}
         }).success(function(data) {
           console.log("cartDetail:"+data);
-          //$scope.disks = data;
+          if(data.length>0){
+            $scope.cartNotEmpty = true;
+            $scope.cartSize = data.length;
+          }
+
         }).error(function(error) {
-    });
+            $scope.cartNotEmpty = true;
+        });
   }
 
   function getDisks() {
     $http({
           method: 'GET',
-          url: '/disks'
+          url: '/disks/list'
         }).success(function(data) {
-          console.log(data);
           $scope.disks = data;
         }).error(function(error) {
     });
