@@ -26,6 +26,7 @@ public class DiskController {
 
     @GET
     @Path("list")
+    @Produces("application/json; charset=UTF-8")
     public List<Disk> list() {
         return mapper.getDisks();
     }
