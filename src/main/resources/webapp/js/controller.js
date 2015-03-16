@@ -3,8 +3,6 @@ diskApp.controller("DisksListCtrl", function($cookieStore, $scope, $http, filter
   $scope.disks = [];
   $scope.cart = [];
 
-  $scope.isList = true;
-  $scope.isCart = false;
   $scope.isLogged = false;
   $scope.isNotLogged = !$scope.isLogged;
   $scope.number = 10;
@@ -21,26 +19,6 @@ diskApp.controller("DisksListCtrl", function($cookieStore, $scope, $http, filter
     getCartSize();
     getDisks();
   }
-
-
-  $scope.goToCart = function() {
-    $scope.isList = false;
-    $scope.isCart = true;
-
-    $http({
-      method: 'GET',
-      url: '/cart'
-          }).success(function(data) {
-            alert(data);
-            $scope.cart = data;
-          }).error(function(error) {
-    });
-  };
-
-  $scope.goToList = function() {
-      $scope.isList = true;
-      $scope.isCart = false;
-  };
 
 
   $scope.addDisk = function() {
@@ -76,38 +54,6 @@ diskApp.controller("DisksListCtrl", function($cookieStore, $scope, $http, filter
     });
   };
 
-  $scope.isAllChecked = function(){
-    var checkBoxes = $(".check-self");
-    var flag = 0;
-    angular.forEach(checkBoxes, function(checkbox) {
-      if(checkbox.checked) {
-        flag++;
-      }
-    });
-
-    if(flag == checkBoxes.length) {
-      $('.check-all')[0].checked = true;
-    }
-    else {
-      $('.check-all')[0].checked = false;
-    }
-
-    $scope.caculateTotalPrice();
-  };
-
-  $scope.caculateTotalPrice = function() {
-    var checkBoxes = $(".check-self");
-
-    $scope.totalPrice = 0.0;
-    for(var i = 0; i < checkBoxes.length; i++)
-      {
-        if(checkBoxes[i].checked)
-          {
-            $scope.totalPrice += $scope.cart[i].number * $scope.cart[i].price;
-          }
-      }
-    };
-
   function getIndexOfDisk(disk) {
     return $scope.disks.indexOf(disk);
   };
@@ -122,8 +68,6 @@ diskApp.controller("DisksListCtrl", function($cookieStore, $scope, $http, filter
          }
          $scope.username = $cookieStore.get('currentUser');
     }
-
-
   }
   function getCartSize(){
     $http({

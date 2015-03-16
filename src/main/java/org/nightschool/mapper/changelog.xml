@@ -229,4 +229,16 @@
             <column name="type" value="0"/>
         </insert>
     </changeSet>
+    <changeSet id="14" author="LiuHengJian">
+        <insert tableName="cart">
+            <column name="diskId" value="2"></column>
+            <column name="quantity" value="1"></column>
+            <column name="user" value="梦回唐朝"></column>
+        </insert>
+        <insert tableName="cart">
+            <column name="diskId" value="3"></column>
+            <column name="quantity" value="1"></column>
+            <column name="user" value="梦回唐朝"></column>
+        </insert>
+    </changeSet>
 </databaseChangeLog>

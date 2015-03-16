@@ -24,64 +24,14 @@
         </div>
         <div class="align-right" ng-show="isLogged">
             <a href="orders.html" target="_blank" class="noneDecorator"><span>{{username}}</span>，您好！</a>
-            <a href="javascript:void(0)" ng-click="goToCart()" ng-show="!isAdmin" class="noneDecorator">
+            <a href="cart.html" target="_blank" ng-show="!isAdmin" class="noneDecorator">
                 购物车<span ng-show="cartNotEmpty" class="boldRedText">{{cartSize}}</span>
             </a>
-            <a href="javascript:void(0)" ng-click="goToList()" ng-show="isCart">返回</a>
-            <a href="" ng-show="isAdmin" ng-click="" class="noneDecorator">商品管理</a>
+            <a href="goods-list.html" ng-show="isAdmin" ng-click="" class="noneDecorator">商品管理</a>
         </div>
     </nav>
-    <div ng-show="isCart">
-        <table>
-            <tr>
-                <th class="td-checkbox">
-                    <input type="checkbox" class="check-all" ng-model="master" ng-click="caculateTotalPrice()">
-                </th>
 
-                <th class="td-name">
-                    商品名
-                </th>
-
-                <th class="td-number">
-                    数量
-                </th>
-
-                <th class="td-price">
-                    单价
-                </th>
-
-                <th class="td-amount">
-                    总量
-                </th>
-            </tr>
-
-            <tr ng-repeat="disk in cart">
-                <td class="td-checkbox">
-                    <input type="checkbox" class="check-self" ng-checked="master" ng-click="isAllChecked()">
-                </td>
-
-                <td class="td-name">
-                    {{disk.name}}
-                </td>
-
-                <td class="td-number">
-                    {{disk.number}}
-                </td>
-
-                <td class="td-price">
-                    {{disk.price}}
-                </td>
-
-                <td class="td-amount">
-                    {{disk.price * disk.number}}
-                </td>
-            </tr>
-        </table>
-        <p id="totalPrice">
-            当前所选商品的总价: {{totalPrice}}元
-        </p>
-    </div>
-    <section id="showMessage" ng-show="isList">
+    <section id="showMessage">
         <div ng-show="isAdmin">
             <input placeholder="商品名" id="name" ng-model="disk.name"/>
             <input placeholder="图片链接" id="imgUrl" ng-model="disk.imgUrl"/>
@@ -107,7 +57,7 @@
                 </div>
 
                 <div>
-                    <button ng-click="removeDisk(disk)">删除</button>
+                    <button ng-click="removeDisk(disk)" ng-show="isAdmin">删除</button>
                     <button ng-click="addToCart(disk)">加入购物车</button>
                 </div>
             </div>
