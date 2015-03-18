@@ -5,10 +5,11 @@ angular.module('DiskApp',['ngCookies']).controller("CartCtrl", function($cookieS
   $scope.cartNotEmpty = false;
   $scope.isLogged = false;
   $scope.isNotLogged = !$scope.isLogged;
+  $scope.cart = [];
 
   $scope.init = function(){
     checkLoginStatus();
-    getCartSize();
+    getCart();
   }
   function checkLoginStatus(){
     if($cookieStore.get('logged')){
@@ -22,15 +23,16 @@ angular.module('DiskApp',['ngCookies']).controller("CartCtrl", function($cookieS
          $scope.username = $cookieStore.get('currentUser');
     }
   }
-  function getCartSize(){
+  function getCart(){
     $http({
         method: 'GET',
         url: '/cart/query',
         params: {username: $scope.username}
       }).success(function(data) {
         if(data.length>0){
-          $scope.cartNotEmpty = true;
-          $scope.cartSize = data.length;
+            $scope.cart = data;
+            $scope.cartNotEmpty = true;
+            $scope.cartSize = data.length;
         }
 
       }).error(function(error) {
@@ -53,10 +55,10 @@ angular.module('DiskApp',['ngCookies']).controller("CartCtrl", function($cookieS
       $('.check-all')[0].checked = false;
     }
 
-    $scope.caculateTotalPrice();
+    $scope.calculateTotalPrice();
   }
 
-  $scope.caculateTotalPrice = function() {
+  $scope.calculateTotalPrice = function() {
     var checkBoxes = $(".check-self");
 
     $scope.totalPrice = 0.0;
@@ -64,7 +66,7 @@ angular.module('DiskApp',['ngCookies']).controller("CartCtrl", function($cookieS
       {
         if(checkBoxes[i].checked)
           {
-            $scope.totalPrice += $scope.cart[i].number * $scope.cart[i].price;
+            $scope.totalPrice += $scope.cart[i].quantity * $scope.cart[i].disk.discountedPrice;
           }
       }
   };

@@ -96,30 +96,6 @@ section .item img {
   height: 70%;
 }
 
-table {
-  width: 80%;
-  border: 1px black solid;
-  align: center;
-  margin: auto;
-}
-
-table tbody tr{
-  text-align: center;
-}
-
-table .td-checkbox, .td-number, .td-price, .td-amount{
-  width: 15%;
-}
-
-table .td-name{
-  width: 40%;
-}
-
-#totalPrice{
-  float:right;
-  margin-right: 10%;
-}
-
 footer {
   background-color: #eeeeee;
   clear: both;

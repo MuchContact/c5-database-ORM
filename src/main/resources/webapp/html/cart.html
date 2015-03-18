@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <title>购物车</title>
     <link rel="stylesheet" href="../css/main.css">
+    <link rel="stylesheet" href="../css/cart.css">
     <script src="../js/vendor/angular.min.js"></script>
     <script src="../js/vendor/angular-cookies.min.js"></script>
     <script src="../js/cart.js"></script>
@@ -28,7 +29,7 @@
     <table>
         <tr>
             <th class="td-checkbox">
-                <input type="checkbox" class="check-all" ng-model="master" ng-click="caculateTotalPrice()">
+                <input type="checkbox" class="check-all" ng-model="master" ng-click="calculateTotalPrice()">
             </th>
 
             <th class="td-name">
@@ -44,7 +45,11 @@
             </th>
 
             <th class="td-amount">
-                总量
+                金额 (元)
+            </th>
+
+            <th class="td-operation">
+                操作
             </th>
         </tr>
 
@@ -54,19 +59,23 @@
             </td>
 
             <td class="td-name">
-                {{disk.name}}
+                {{disk.disk.name}}
             </td>
 
             <td class="td-number">
-                {{disk.number}}
+                {{disk.quantity}}
             </td>
 
             <td class="td-price">
-                {{disk.price}}
+                {{disk.disk.discountedPrice}}
             </td>
 
             <td class="td-amount">
-                {{disk.price * disk.number}}
+                {{disk.disk.discountedPrice * disk.quantity}}
+            </td>
+
+            <td>
+                删除
             </td>
         </tr>
     </table>

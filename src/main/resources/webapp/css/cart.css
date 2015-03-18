@@ -1,0 +1,23 @@
+table {
+  width: 80%;
+  border: 1px black solid;
+  align: center;
+  margin: auto;
+}
+
+table tbody tr{
+  text-align: center;
+}
+
+table .td-checkbox, .td-number, .td-price, .td-amount, .td-operation{
+  width: 12%;
+}
+
+table .td-name{
+  width: 40%;
+}
+
+#totalPrice{
+  float:right;
+  margin-right: 10%;
+}

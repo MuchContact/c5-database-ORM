@@ -223,7 +223,7 @@
     </changeSet>
     <changeSet id="13" author="LiuHengJian">
         <insert tableName="users">
-            <column name="username" value="梦回唐朝"></column>
+            <column name="username" value="Henry"></column>
             <column name="password" value="123456"></column>
             <column name="email" value="gis@gmail.com"></column>
             <column name="type" value="0"/>
@@ -233,12 +233,12 @@
         <insert tableName="cart">
             <column name="diskId" value="2"></column>
             <column name="quantity" value="1"></column>
-            <column name="user" value="梦回唐朝"></column>
+            <column name="user" value="Henry"></column>
         </insert>
         <insert tableName="cart">
             <column name="diskId" value="3"></column>
             <column name="quantity" value="1"></column>
-            <column name="user" value="梦回唐朝"></column>
+            <column name="user" value="Henry"></column>
         </insert>
     </changeSet>
 </databaseChangeLog>

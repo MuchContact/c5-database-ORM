@@ -1,7 +1,6 @@
 var diskApp = angular.module('DiskApp',['ngCookies']);
 diskApp.controller("DisksListCtrl", function($cookieStore, $scope, $http, filterFilter) {
   $scope.disks = [];
-  $scope.cart = [];
 
   $scope.isLogged = false;
   $scope.isNotLogged = !$scope.isLogged;
