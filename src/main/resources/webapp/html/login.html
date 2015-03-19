@@ -12,22 +12,40 @@
 </head>
 <body ng-controller="UserCtrl" ng-init="initialize()">
 <div class="container">
-    <section id="content">
+    <section id="loginSection" ng-show="login">
         <form ng-submit="login()">
-            <h1>Login Form</h1>
+            <h1>登录</h1>
             <div>
-                <input type="text" placeholder="Username" required="" id="username" ng-model="user.username"/>
+                <input type="text" placeholder="用户名" required="" id="username" ng-model="user.username"/>
             </div>
             <div>
-                <input type="password" placeholder="Password" required="" id="password" ng-model="user.password"/>
+                <input type="password" placeholder="密码" required="" id="password" ng-model="user.password"/>
             </div>
             <div>
-                <input type="submit" value="Log in" />
-                <a href="#">Lost your password?</a>
-                <a href="#">Register</a>
+                <input type="submit" value="登录" />
+                <a href="#">忘记登录密码？</a>
+                <a href="#" ng-click="go2Register()">免费注册</a>
             </div>
         </form><!-- form -->
     </section><!-- content -->
+    <section id="registerSection" ng-show="!login">
+        <form ng-submit="register()">
+            <div>
+                用户名：<input type="text" required="" id="username" ng-model="user.username"/>
+            </div>
+            <div>
+                请设置密码：<input type="password" required="" id="password" ng-model="user.password"/>
+            </div>
+            <div>
+                请确认密码：<input type="password" required="" id="confirmPassword"/>
+            </div>
+            <div>
+                我已阅读并同意<a href="javascript:void(0)" target="_blank" id="agreement"> 《淘宝用户注册协议》</a>
+                <input type="submit" value="立即注册" />
+                <span ng-click="go2Login()">返回登录</span>
+            </div>
+        </form><!-- form -->
+    </section>
 </div><!-- container -->
 </body>
 </html>

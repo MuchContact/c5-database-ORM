@@ -258,3 +258,6 @@ form:after {
 	background-position: 0 -135px;
 	color: #00aeef;
 }
+#agreement {
+    text-decoration: none;
+}

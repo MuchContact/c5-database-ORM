@@ -1,0 +1,18 @@
+table {
+  width: 80%;
+  border: 1px black solid;
+  align: center;
+  margin: auto;
+}
+
+table tbody tr{
+  text-align: center;
+}
+
+table .td-checkbox, .td-price, .td-amount, .td-soldOutAmount, .td-publishTime, .td-operation{
+  width: 10%;
+}
+
+table .td-name{
+  width: 40%;
+}
