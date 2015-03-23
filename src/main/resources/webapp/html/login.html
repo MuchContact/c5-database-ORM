@@ -12,14 +12,21 @@
 </head>
 <body ng-controller="UserCtrl" ng-init="initialize()">
 <div class="container">
-    <section id="loginSection" ng-show="login">
+    <section id="content" ng-show="login">
         <form ng-submit="login()">
             <h1>登录</h1>
             <div>
                 <input type="text" placeholder="用户名" required="" id="username" ng-model="user.username"/>
             </div>
             <div>
+                <p class="errorTips" ng-show="isUsernameExisted">用户名不存在!</p>
+                <p class="errorTips" ng-show="">用户名或密码不正确!</p>
+            </div>
+            <div>
                 <input type="password" placeholder="密码" required="" id="password" ng-model="user.password"/>
+            </div>
+            <div>
+                <p class="errorTips">用户名或密码不正确!</p>
             </div>
             <div>
                 <input type="submit" value="登录" />
@@ -28,21 +35,30 @@
             </div>
         </form><!-- form -->
     </section><!-- content -->
-    <section id="registerSection" ng-show="!login">
+    <section id="content" ng-show="!login">
         <form ng-submit="register()">
+            <h1>免费注册</h1>
             <div>
-                用户名：<input type="text" required="" id="username" ng-model="user.username"/>
+                <input type="text" placeholder="请输入用户名" required="" id="username" ng-model="user.username"/>
             </div>
             <div>
-                请设置密码：<input type="password" required="" id="password" ng-model="user.password"/>
+
             </div>
             <div>
-                请确认密码：<input type="password" required="" id="confirmPassword"/>
+                <input type="password" placeholder="请设置密码" required="" id="password" ng-model="user.password"/>
             </div>
             <div>
-                我已阅读并同意<a href="javascript:void(0)" target="_blank" id="agreement"> 《淘宝用户注册协议》</a>
+                <input type="password" placeholder="请再次确认密码" required="" id="confirmPassword"/>
+            </div>
+            <div>
+                <div style="text-align: left;">
+                    <input type="checkbox" style="margin-left: 20px;">
+                    <span >我已阅读并同意
+                        <a href="javascript:void(0)" target="_blank" id="agreement" style="float: initial;"> 《淘宝用户注册协议》</a>
+                    </span>
+                </div>
                 <input type="submit" value="立即注册" />
-                <span ng-click="go2Login()">返回登录</span>
+                <a href=""> <span ng-click="go2Login()">返回登录</span></a>
             </div>
         </form><!-- form -->
     </section>

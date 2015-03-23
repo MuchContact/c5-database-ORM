@@ -1,23 +1,45 @@
-table {
-  width: 80%;
-  border: 1px black solid;
-  align: center;
-  margin: auto;
-}
-
-table tbody tr{
-  text-align: center;
-}
-
 table .td-checkbox, .td-number, .td-price, .td-amount, .td-operation{
   width: 12%;
 }
 
-table .td-name{
-  width: 40%;
+table .highlight{
+    border-top: 6px red solid;
+}
+
+#balance{
+    height: 100%;
+    right: 0px;
+    position: absolute;
+    width: 120px;
+    background-color: rgb(255, 66, 19);
+    color: white;
+    font-size: 25px;
+    font-weight: bold;
+    border-bottom-width: 0px;
 }
 
 #totalPrice{
   float:right;
-  margin-right: 10%;
+  margin-right: 150px;
+}
+
+.footer{
+    position: fixed;
+    margin-left: 10%;
+    width: 79%;
+    background-color: rgb(218, 218, 218);
+    bottom: 0;
+}
+.footerSelect{
+    float: left;
+}
+.footerInfo{
+    float: left;
+    -webkit-margin-before: 1em;
+    margin-left: 10%;
+}
+p .highlight{
+    color: red;
+    font-weight: bolder;
+    font-size: 30px;
 }
