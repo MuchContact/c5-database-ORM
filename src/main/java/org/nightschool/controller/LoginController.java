@@ -36,9 +36,9 @@ public class LoginController {
         return mapper.login(user);
     }
 
-    @POST
+    @GET
     @Path("/checkUsername")
-    public boolean checkUserNameExisted(String username) {
-        return mapper.checkUserNameExisted(username) == null ? false : true;
+    public boolean checkUserNameExisted(@QueryParam("username") String username) {
+        return mapper.checkUserNameExisted(username)!=null;
     }
 }

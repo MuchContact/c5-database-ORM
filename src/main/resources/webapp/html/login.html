@@ -12,52 +12,57 @@
 </head>
 <body ng-controller="UserCtrl" ng-init="initialize()">
 <div class="container">
-    <section id="content" ng-show="login">
+    <section id="content" ng-show="showLoginForm">
         <form ng-submit="login()">
             <h1>登录</h1>
             <div>
-                <input type="text" placeholder="用户名" required="" id="username" ng-model="user.username"/>
+                <input type="text" placeholder="用户名" required="" id="username" ng-model="user.username" ng-change="validateUserInfo()"
+                        ng-blur="checkUserName($event)"/>
             </div>
             <div>
-                <p class="errorTips" ng-show="isUsernameExisted">用户名不存在!</p>
-                <p class="errorTips" ng-show="">用户名或密码不正确!</p>
+                <p class="errorTips" ng-show="!isUsernameExisted">用户名不存在!</p>
+                <p class="errorTips" ng-show="loginError">用户名或密码不正确!</p>
             </div>
             <div>
-                <input type="password" placeholder="密码" required="" id="password" ng-model="user.password"/>
+                <input type="password" placeholder="密码" required="" id="password" ng-model="user.password" ng-change="validateUserInfo()"/>
             </div>
             <div>
-                <p class="errorTips">用户名或密码不正确!</p>
+                <p class="errorTips" ng-show="loginError">用户名或密码不正确!</p>
             </div>
             <div>
-                <input type="submit" value="登录" />
+                <input type="submit" value="登录" class="submitNormal"/>
                 <a href="#">忘记登录密码？</a>
                 <a href="#" ng-click="go2Register()">免费注册</a>
             </div>
         </form><!-- form -->
     </section><!-- content -->
-    <section id="content" ng-show="!login">
+    <section id="content" ng-show="!showLoginForm">
         <form ng-submit="register()">
             <h1>免费注册</h1>
             <div>
-                <input type="text" placeholder="请输入用户名" required="" id="username" ng-model="user.username"/>
+                <input type="text" placeholder="请输入用户名" required="" id="username-reg"
+                       ng-model="userForRegister.username" ng-blur="checkUserName($event)"/>
             </div>
             <div>
-
+                <p class="errorTips" ng-show="isUsernameExisted">该用户名已存在!</p>
             </div>
             <div>
-                <input type="password" placeholder="请设置密码" required="" id="password" ng-model="user.password"/>
+                <input type="password" placeholder="请设置密码" required="" id="password-reg" ng-model="userForRegister.password"/>
             </div>
             <div>
-                <input type="password" placeholder="请再次确认密码" required="" id="confirmPassword"/>
+                <input type="password" placeholder="请再次确认密码" required="" id="confirmPassword" ng-blur="checkConfirmedPassword()"/>
+            </div>
+            <div>
+                <p class="errorTips" ng-show="!isConfirmedPasswordRight">两次输入密码不一致!</p>
             </div>
             <div>
                 <div style="text-align: left;">
-                    <input type="checkbox" style="margin-left: 20px;">
+                    <input type="checkbox" style="margin-left: 20px;" ng-click="checkAgreement($event)">
                     <span >我已阅读并同意
                         <a href="javascript:void(0)" target="_blank" id="agreement" style="float: initial;"> 《淘宝用户注册协议》</a>
                     </span>
                 </div>
-                <input type="submit" value="立即注册" />
+                <input id="register-btn" type="submit" value="立即注册" disabled="disabled" class="submitDisabled"/>
                 <a href=""> <span ng-click="go2Login()">返回登录</span></a>
             </div>
         </form><!-- form -->
