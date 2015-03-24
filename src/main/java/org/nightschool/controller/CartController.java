@@ -4,6 +4,7 @@ import org.nightschool.dao.CartDao;
 import org.nightschool.mapper.CartMapper;
 import org.nightschool.model.CartItem;
 import org.nightschool.model.Disk;
+import org.nightschool.rest.PostParas;
 
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
@@ -21,10 +22,10 @@ public class CartController {
     @POST
     @Path("addToCart")
     @Consumes(MediaType.APPLICATION_JSON)
-    public int addToCart(int diskId, String username) {
+    public int addToCart(PostParas pp) {
         //TODO get user information, such as username
         CartMapper mapper = getMapper(CartMapper.class);
-        int result = mapper.add(diskId, 1, username);
+        int result = mapper.add(pp.diskId, 1, pp.username);
         if (result<1)
             throw new WebApplicationException(Response.Status.CONFLICT);
         return result;

@@ -43,11 +43,13 @@ diskApp.controller("DisksListCtrl", function($cookieStore, $scope, $http, filter
   };
 
   $scope.addToCart = function(disk) {
+    console.log(disk);
     disk.number = $scope.number;
+    //data: JSON.stringify(_.omit(disk,"$$hashKey")),
     $http({
       method: 'POST',
-      url: '/cart/add',
-      data: JSON.stringify(_.omit(disk,"$$hashKey")),
+      url: '/cart/addToCart',
+      data: {diskId: disk.id, username: $scope.username},
       contentType: "application/json"
     }).success(function(){
     });
