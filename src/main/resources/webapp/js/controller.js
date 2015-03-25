@@ -52,6 +52,7 @@ diskApp.controller("DisksListCtrl", function($cookieStore, $scope, $http, filter
       data: {diskId: disk.id, username: $scope.username},
       contentType: "application/json"
     }).success(function(){
+        $scope.cartSize++;
     });
   };
 

@@ -25,3 +25,11 @@ table tbody tr{
 table .td-name{
   width: 40%;
 }
+
+.operator{
+    color: blue;
+    cursor: pointer;
+}
+.operator:hover{
+    background-color: red;
+}

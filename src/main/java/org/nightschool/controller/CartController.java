@@ -24,6 +24,7 @@ public class CartController {
     @Consumes(MediaType.APPLICATION_JSON)
     public int addToCart(PostParas pp) {
         //TODO get user information, such as username
+        //TODO check stock size to see if there are enough goods
         CartMapper mapper = getMapper(CartMapper.class);
         int result = mapper.add(pp.diskId, 1, pp.username);
         if (result<1)
@@ -58,10 +59,11 @@ public class CartController {
         return mapper.modify(primaryIdentity, quantity);
     }
 
-    @DELETE
+    @POST
     @Path("delete")
-    public int deleteFromCart(int diskId, String username, String token) {
+    @Consumes(MediaType.APPLICATION_JSON)
+    public int deleteFromCart(PostParas pp) {
         CartMapper mapper = getMapper(CartMapper.class);
-        return mapper.delete(diskId);
+        return mapper.delete(pp.diskId, pp.username);
     }
 }

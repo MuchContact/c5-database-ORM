@@ -23,6 +23,10 @@ angular.module('DiskApp',['ngCookies']).controller("CartCtrl", function($cookieS
          $scope.username = $cookieStore.get('currentUser');
     }
   }
+  function mergeCartResponse(response){
+        var group = _.groupBy(response, function(item){ return item.disk.id; });
+        return  _.map(group, function(item){ item[0].quantity = _.size(item); return item[0] });
+  }
   function getCart(){
     $http({
         method: 'GET',
@@ -30,7 +34,7 @@ angular.module('DiskApp',['ngCookies']).controller("CartCtrl", function($cookieS
         params: {username: $scope.username}
       }).success(function(data) {
         if(data.length>0){
-            $scope.cart = data;
+            $scope.cart = mergeCartResponse(data);
             $scope.cartNotEmpty = true;
             $scope.cartSize = data.length;
         }
@@ -70,4 +74,22 @@ angular.module('DiskApp',['ngCookies']).controller("CartCtrl", function($cookieS
           }
       }
   };
+    function validateCartSize(){
+        var size=0;
+        _.each($scope.cart, function(item){size+item.quantity});
+        return size;
+    }
+  $scope.deleteFromCart = function(id){
+    $http({
+          method: 'POST',
+          url: '/cart/delete',
+          data: {diskId: id, username: $scope.username},
+          contentType: "application/json"
+        }).success(function(){
+            $scope.cart = _.filter($scope.cart, function(item){ return item.disk.id != id; });
+            console.log($scope.cart);
+            validateCartSize();
+            console.log($scope.cartSize);
+        });
+  }
  });

@@ -26,7 +26,7 @@ public interface CartMapper {
     @Update("update cart set quantity=#{quantity} where id=#{primaryIdentity}")
     public int modify(@Param("primaryIdentity") int primaryIdentity, @Param("quantity") int quantity);
 
-    @Delete("delete from cart where id=#{primaryIdentity}")
-    public int delete(int primaryIdentity);
+    @Delete("delete from cart where \"diskId\"=#{diskId} and \"user\"=#{username} ")
+    public int delete(@Param("diskId") int diskId, @Param("username") String username);
 
 }
