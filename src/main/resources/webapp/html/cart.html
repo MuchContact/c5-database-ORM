@@ -58,7 +58,8 @@
 
         <tr ng-repeat="disk in cart">
             <td class="td-checkbox">
-                <input type="checkbox" class="check-self" ng-checked="master" ng-click="isAllChecked()">
+                <input type="checkbox" class="check-self" ng-checked="master" ng-click="isAllChecked()"
+                       value={{disk.disk.id}}>
             </td>
 
             <td class="td-name">
@@ -95,7 +96,7 @@
         <p id="totalPrice">
             合计: <span class="highlight">¥{{totalPrice||0.00}}</span>
         </p>
-        <input id="balance" type="button" value="结算">
+        <input id="balance" type="button" ng-click="makeOrder()" value="结算">
     </div>
 
 </div>

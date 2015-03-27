@@ -92,4 +92,31 @@ angular.module('DiskApp',['ngCookies']).controller("CartCtrl", function($cookieS
             console.log($scope.cartSize);
         });
   }
+  function getCheckedDiskIds(){
+    var checkBoxes = $(".check-self");
+    var result = [];
+    _.each(checkBoxes, function(checkbox) {
+         if(checkbox.checked) {
+           result.push(checkbox.value);
+         }
+       });
+    return result;
+  }
+  $scope.makeOrder = function(){
+    var disks = getCheckedDiskIds();
+    $http({
+          method: 'GET',
+          url: '/cart/order',
+          params: {diskIds: disks.toString(), username: $scope.username},
+          contentType: "application/json"
+        }).success(function(){
+            $scope.cart = _.filter($scope.cart, function(item){
+                console.log(item);
+                return _.indexOf(disks, ''+item.disk.id)<0;
+            });
+            console.log($scope.cart);
+            validateCartSize();
+            console.log($scope.cartSize);
+        });
+  }
  });

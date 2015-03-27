@@ -66,4 +66,18 @@ public class CartController {
         CartMapper mapper = getMapper(CartMapper.class);
         return mapper.delete(pp.diskId, pp.username);
     }
+
+    @GET
+    @Path("order")
+    @Consumes(MediaType.APPLICATION_JSON)
+    public int makeOrder(@QueryParam("diskIds") String diskIds, @QueryParam("username") String username) {
+        CartMapper mapper = getMapper(CartMapper.class);
+        String[] disks = diskIds.split(",");
+        int count = 0;
+        for(String disk :disks){
+            mapper.delete(Integer.valueOf(disk), username);
+            count++;
+        }
+        return count;
+    }
 }
