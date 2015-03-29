@@ -22,7 +22,10 @@ table .highlight{
   float:right;
   margin-right: 150px;
 }
-
+.thumbnail{
+    width: 40px;
+    height: 40px;
+}
 .footer{
     position: fixed;
     margin-left: 10%;

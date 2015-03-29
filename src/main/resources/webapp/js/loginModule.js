@@ -26,6 +26,7 @@ angular.module('LoginModule',['ngCookies']).controller("UserCtrl", function($coo
     $scope.isUsernameExisted = true;
    }
    $scope.login=function(user){
+      $scope.user.password = $.md5($scope.user.password);
       $http({
          method: 'POST',
          url: '/user/login',
@@ -44,6 +45,7 @@ angular.module('LoginModule',['ngCookies']).controller("UserCtrl", function($coo
        });
    }
    $scope.register = function(user){
+      $scope.userForRegister.password = $.md5($scope.userForRegister.password);
       $http({
          method: 'POST',
          url: '/user/register',

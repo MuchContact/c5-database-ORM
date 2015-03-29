@@ -139,7 +139,7 @@
     <changeSet id="4" author="LiuHengJian">
         <insert tableName="users">
             <column name="username" value="twer"></column>
-            <column name="password" value="123456"></column>
+            <column name="password" value="e10adc3949ba59abbe56e057f20f883e"></column>
             <column name="email" value="gis@gmail.com"></column>
             <column name="type" value="1"/>
         </insert>
@@ -224,7 +224,7 @@
     <changeSet id="13" author="LiuHengJian">
         <insert tableName="users">
             <column name="username" value="Henry"></column>
-            <column name="password" value="123456"></column>
+            <column name="password" value="e10adc3949ba59abbe56e057f20f883e"></column>
             <column name="email" value="gis@gmail.com"></column>
             <column name="type" value="0"/>
         </insert>

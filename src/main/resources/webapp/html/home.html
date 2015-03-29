@@ -56,8 +56,8 @@
                 </div>
 
                 <div>
-                    <button ng-click="removeDisk(disk)" ng-show="isAdmin">删除</button>
-                    <button ng-click="addToCart(disk)">加入购物车</button>
+                    <button class="deleteGoodBtn" ng-click="removeDisk(disk)" ng-show="isAdmin">删除</button>
+                    <button class="addCartBtn" ng-click="addToCart(disk)" ng-show="!isAdmin">加入购物车</button>
                 </div>
             </div>
         </div>
