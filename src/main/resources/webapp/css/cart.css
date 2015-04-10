@@ -26,16 +26,7 @@ table .highlight{
     width: 40px;
     height: 40px;
 }
-.footer{
-    position: fixed;
-    margin-left: 10%;
-    width: 79%;
-    background-color: rgb(218, 218, 218);
-    bottom: 0;
-}
-.footerSelect{
-    float: left;
-}
+
 .footerInfo{
     float: left;
     -webkit-margin-before: 1em;

@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html ng-app="DiskApp">
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>添加商品</title>
+    <link rel="stylesheet" href="../css/main.css">
+    <link rel="stylesheet" href="../css/goods.css">
+    <script src="../js/vendor/angular.min.js"></script>
+    <script src="../js/vendor/angular-cookies.min.js"></script>
+    <script src="../js/goodsList.js"></script>
+    <script src="../js/vendor/jquery-2.1.1.js"></script>
+    <script src="../js/vendor/underscore-1.7.0.js"></script>
+</head>
+<body ng-controller="GoodsCtrl" ng-init="initHeaderStatus()">
+    <nav>
+        <div class="align-left">
+            <a href="http://localhost:8080/public/html/home.html"><img src="../images/taobao.png" class="logo"></a>
+        </div>
+
+        <div class="align-right" ng-show="isLogged">
+            <a href="orders.html" target="_blank" class="noneDecorator"><span>{{username}}</span>，您好！</a>
+            <a href="cart.html" target="_blank" ng-show="!isAdmin" class="noneDecorator">
+                购物车<span ng-show="cartNotEmpty" class="boldRedText">{{cartSize}}</span>
+            </a>
+            <a href="goods-list.html" ng-show="isAdmin" ng-click="" class="noneDecorator">商品管理</a>
+        </div>
+    </nav>
+    <div class="container">
+        <form>
+            <p>商品名称</p>
+            <input type="input" >
+            <p>商品描述</p>
+            <textarea></textarea>
+            <p>图片</p>
+            <input type="file" >
+            <p>售价</p>
+            <input type="input" >
+            <p>库存</p>
+            <input type="input" >
+            <br/>
+            <button>提交</button>
+            <button>取消</button>
+        </form>
+
+    </div>
+</body>
+</html>

@@ -12,6 +12,9 @@ angular.module('DiskApp',['ngCookies']).controller("GoodsCtrl", function($cookie
     checkLoginStatus();
     getGoods();
   }
+  $scope.initHeaderStatus = function(){
+    checkLoginStatus();
+  }
   function checkLoginStatus(){
     if($cookieStore.get('logged')){
          $scope.isLogged = true;

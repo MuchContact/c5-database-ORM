@@ -27,7 +27,13 @@
     </div>
 </nav>
 <div >
-    <p class="descript"><span class="boldRedText">全部商品</span></p>
+    <div class="headerOnTable">
+        <p class="descript"><span class="boldRedText">全部商品</span></p>
+        <input id="keyword" type="input" placeholder="输入关键词搜索商品">
+        <button id="search">搜索</button>
+        <a href="add-good.html" id="publish">发布新产品</a>
+    </div>
+
     <table>
         <tr class="table-header">
             <th class="td-checkbox highlight">
@@ -87,7 +93,13 @@
             </td>
         </tr>
     </table>
-
+    <div class="footer">
+        <p class="footerSelect">
+            <input type="checkbox" class="check-all" ng-model="master" ng-click="">
+            <span>全选</span>
+            <span>下架</span>
+        </p>
+    </div>
 </div>
 </body>
 </html>

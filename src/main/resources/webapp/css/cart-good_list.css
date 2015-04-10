@@ -33,3 +33,14 @@ table .td-name{
 .operator:hover{
     background-color: red;
 }
+
+.footer{
+    position: fixed;
+    margin-left: 10%;
+    width: 79%;
+    background-color: rgb(218, 218, 218);
+    bottom: 0;
+}
+.footerSelect{
+    float: left;
+}
