@@ -1,6 +1,6 @@
 # 内容大纲
 
-+ Gradle getting started
-+ IntelliJ short cut
-+ Unit test with Junit
+0. Gradle getting started
+0. IntelliJ short cut
+0. Unit test with Junit
 
